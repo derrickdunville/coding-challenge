@@ -67,7 +67,7 @@ exports.deleteLink = async function(req, res) {
       res.status(404).send({err: {message: "target link not found"}})
       return
     }
-    res.status(200).send()
+    res.status(200).send({message: "link successfully deleted"})
   } catch(error) {
     console.dir(error)
     res.status(500).send(error)

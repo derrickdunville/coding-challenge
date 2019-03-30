@@ -138,6 +138,8 @@ describe('Links', () => {
         .send()
         .end((err, res) => {
           res.should.have.status(200)
+          res.body.should.have.property("message")
+          res.body.message.should.eql("link successfully deleted")
           done()
         })
     })
