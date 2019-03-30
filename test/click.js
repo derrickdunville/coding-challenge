@@ -52,6 +52,8 @@ describe('Links', () => {
           res.body.should.have.property("err")
           res.body.err.should.have.property("message")
           res.body.err.message.should.eql("target link not found")
+          res.body.err.should.have.property("type")
+          res.body.err.type.should.eql("NotFound")
           done()
         })
     })
