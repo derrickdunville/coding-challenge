@@ -11,11 +11,11 @@ exports.createClick = async function(req, res) {
     }
     let updatedLink = await Link.findOneAndUpdate({title: targetLink.title}, {clicks: targetLink.clicks + 1}, {new: true})
     if(updatedLink){
-      res.status(200).send()
+      res.status(200).send({message: "link clicks successfully updated"})
     } else {
       res.status(400).send()
     }
-    
+
   } catch(error) {
     console.dir(error)
     res.status(500).send(error)

@@ -70,7 +70,7 @@ describe('Links', () => {
         .get('/links')
         .send()
         .end((err, res) => {
-          res.should.have.status(201)
+          res.should.have.status(200)
           done()
         })
     })
@@ -81,7 +81,7 @@ describe('Links', () => {
         .get('/links/' + link1.title)
         .send()
         .end((err, res) => {
-          res.should.have.status(201)
+          res.should.have.status(200)
           res.body.should.be.a("object")
           res.body.should.have.property("title")
           res.body.title.should.eql(link1.title)
@@ -109,7 +109,7 @@ describe('Links', () => {
           title: "updatedLink"
         })
         .end((err, res) => {
-          res.should.have.status(201)
+          res.should.have.status(200)
           res.body.should.be.a("object")
           res.body.should.have.property("title")
           res.body.title.should.eql("updatedLink")

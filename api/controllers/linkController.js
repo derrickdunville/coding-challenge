@@ -6,7 +6,7 @@ let mongoose      = require('mongoose'),
 exports.listLinks = async function(req, res) {
   try {
     let links = await Link.find({})
-    res.status(201).send(links)
+    res.status(200).send(links)
   } catch(error) {
     console.dir(error)
     res.status(500).send(error)
@@ -39,7 +39,7 @@ exports.readLink = async function(req, res) {
       res.status(404).send({err: {message: "target link not found"}})
       return
     }
-    res.status(201).send(link)
+    res.status(200).send(link)
   } catch(error){
     console.dir(error)
     res.status(500).send(error)
@@ -53,7 +53,7 @@ exports.updateLink = async function(req, res) {
       res.status(404).send({err: {message: "target link not found"}})
       return
     }
-    res.status(201).send(updatedLink)
+    res.status(200).send(updatedLink)
   } catch(error) {
     console.dir(error)
     res.status(500).send(error)
