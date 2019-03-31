@@ -5,6 +5,7 @@ let express = require('express'),
     MONGODB_URI = 'mongodb://localhost/coding_challenge',
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
+    morganBody = require('morgan-body'),
     //Mongoose Models
     Link = require('./api/models/linkModel'),
     //Routes
@@ -13,6 +14,8 @@ let express = require('express'),
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+morganBody(app)
+
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Credentials', true);
