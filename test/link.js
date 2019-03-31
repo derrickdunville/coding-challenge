@@ -65,6 +65,36 @@ describe('Links', () => {
           done()
         })
     })
+    it('it should get link can only contain alphanumeric characters and underscores', (done) => {
+      let newLink = {
+        title: "?spartans"
+      }
+      chai.request(server)
+        .post('/links').send(newLink).end((err, res) => {
+          res.should.have.status(400)
+          res.body.should.have.property("err")
+          res.body.err.should.have.property("message")
+          res.body.err.message.should.eql("link title can only contain alphanumeric characters and underscores")
+          res.body.err.should.have.property("type")
+          res.body.err.type.should.eql("ValidationError")
+          done()
+        })
+    })
+    it('it should get link title is required', (done) => {
+      let newLink = {
+        title: ""
+      }
+      chai.request(server)
+        .post('/links').send(newLink).end((err, res) => {
+          res.should.have.status(400)
+          res.body.should.have.property("err")
+          res.body.err.should.have.property("message")
+          res.body.err.message.should.eql("link title is required")
+          res.body.err.should.have.property("type")
+          res.body.err.type.should.eql("ValidationError")
+          done()
+        })
+    })
   })
   describe('GET /links', () => {
     it('it should get a list of links', (done) => {

@@ -38,7 +38,22 @@ module.exports = function(app) {
          * @apiErrorExample {json} Error-Response-Body:
          * {
          *   err: {
+         *     type: "ValidationError"
          *     message: "link already exists"
+         *   }
+         * }
+         * @apiErrorExample {json} Error-Response-Body:
+         * {
+         *   err: {
+         *     type: "ValidationError"
+         *     message: "link title is required"
+         *   }
+         * }
+         * @apiErrorExample {json} Error-Response-Body:
+         * {
+         *   err: {
+         *     type: "ValidationError"
+         *     message: "link title can only contain alphanumeric characters and underscores"
          *   }
          * }
          */
@@ -64,6 +79,7 @@ module.exports = function(app) {
          * @apiErrorExample {json} Error-Response-Body:
          * {
          *   err: {
+         *     type: "ValidationError"
          *     message: "target link not found"
          *   }
          * }
@@ -92,6 +108,7 @@ module.exports = function(app) {
          * @apiErrorExample {json} Error-Response-Body:
          * {
          *   err: {
+         *     type: "ValidationError"
          *     message: "target link not found"
          *   }
          * }
@@ -112,6 +129,7 @@ module.exports = function(app) {
           * @apiErrorExample {json} Error-Response-Body:
           * {
           *   err: {
+          *     type: "ValidationError"
           *     message: "target link not found"
           *   }
           * }

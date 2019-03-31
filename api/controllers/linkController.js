@@ -2,6 +2,7 @@ let mongoose      = require('mongoose'),
     mongodb       = require('mongodb'),
     Link          = mongoose.model('Link')
 
+var alphaNumericUnderscoreRegex = new RegExp("^[a-zA-Z0-9_]+$")
 
 exports.listLinks = async function(req, res) {
   try {
@@ -15,7 +16,14 @@ exports.listLinks = async function(req, res) {
 
 exports.createLink = async function(req, res) {
   try {
-
+    if(req.body.title === ''){
+      res.status(400).send({err: {type: "ValidationError", message: "link title is required"}})
+      return
+    }
+    if(!alphaNumericUnderscoreRegex.test(req.body.title)){
+      res.status(400).send({err: {type: "ValidationError", message: "link title can only contain alphanumeric characters and underscores"}})
+      return
+    }
     let linkExists = await Link.findOne({title: req.body.title})
     if(linkExists){
       res.status(400).send({err: {type: "ValidationError", message: "link already exists"}})
