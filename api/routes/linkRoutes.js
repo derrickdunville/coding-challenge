@@ -123,6 +123,7 @@ module.exports = function(app) {
           * @apiSuccess (200) {String} message a message acknowledging a successful delete
           * @apiSuccessExample {json} Success-Response-Body:
           *  {
+          *    title: "example",
           *    message: "link successfully deleted"
           *  }
           * @apiError (404) {Object} NotFound an object with a message about the error
