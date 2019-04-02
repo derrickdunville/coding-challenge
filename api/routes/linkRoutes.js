@@ -75,7 +75,7 @@ module.exports = function(app) {
          *    title: "example",
          *    clicks: 10
          *  }
-         * @apiError (404) {Object} NotFound an object with a message about the error
+         * @apiError (404) {Object} NotFoundError an object with a message about the error
          * @apiErrorExample {json} Error-Response-Body:
          * {
          *   err: {
@@ -104,7 +104,7 @@ module.exports = function(app) {
          *    title: "updated",
          *    clicks: 10
          *  }
-         * @apiError (404) {Object} NotFound an object with a message about the error
+         * @apiError (404) {Object} NotFoundError an object with a message about the error
          * @apiErrorExample {json} Error-Response-Body:
          * {
          *   err: {
@@ -127,7 +127,7 @@ module.exports = function(app) {
           *    title: "example",
           *    message: "link successfully deleted"
           *  }
-          * @apiError (404) {Object} NotFound an object with a message about the error
+          * @apiError (404) {Object} NotFoundError an object with a message about the error
           * @apiErrorExample {json} Error-Response-Body:
           * {
           *   err: {

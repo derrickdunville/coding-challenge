@@ -6,7 +6,7 @@ exports.createClick = async function(req, res) {
   try {
     let targetLink = await Link.findOne({title: req.params.title})
     if(!targetLink){
-      res.status(404).send({err: {type: "NotFound", message: "target link not found"}})
+      res.status(404).send({err: {type: "NotFoundError", message: "target link not found"}})
       return
     }
     let updatedLink = await Link.findOneAndUpdate({title: targetLink.title}, {clicks: targetLink.clicks + 1}, {new: true})
