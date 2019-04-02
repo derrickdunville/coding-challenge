@@ -1,8 +1,9 @@
 let mongoose      = require('mongoose'),
     mongodb       = require('mongodb'),
-    Link          = mongoose.model('Link')
+    Link          = mongoose.model('Link'),
+    NotFoundError = require('../constants/NotFoundError')
 
-var alphaNumericUnderscoreRegex = new RegExp("^[a-zA-Z0-9_]+$")
+const alphaNumericUnderscoreRegex = new RegExp("^[a-zA-Z0-9_]+$")
 
 exports.listLinks = async function(req, res) {
   try {
@@ -44,7 +45,7 @@ exports.readLink = async function(req, res) {
   try {
     let link = await Link.findOne({title: req.params.title})
     if(!link){
-      res.status(404).send({err: {type: "NotFoundError", message: "target link not found"}})
+      res.status(404).send(NotFoundError)
       return
     }
     res.status(200).send(link)
@@ -58,7 +59,7 @@ exports.updateLink = async function(req, res) {
   try {
     let updatedLink = await Link.findOneAndUpdate({title: req.params.title}, {title: req.body.title}, {new: true})
     if(!updatedLink){
-      res.status(404).send({err: {type: "NotFoundError", message: "target link not found"}})
+      res.status(404).send(NotFoundError)
       return
     }
     res.status(200).send(updatedLink)
@@ -72,7 +73,7 @@ exports.deleteLink = async function(req, res) {
   try {
     let deletedLink = await Link.deleteOne({ title: req.params.title })
     if(!deletedLink){
-      res.status(404).send({err: {type: "NotFoundError", message: "target link not found"}})
+      res.status(404).send(NotFoundError)
       return
     }
     res.status(200).send({title: req.params.title, message: "link successfully deleted"})
