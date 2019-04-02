@@ -121,6 +121,7 @@ module.exports = function(app) {
           * @apiDescription Deletes a link object. The title parameter should be sent as a query parameter.
           * @apiParam {String} title  the title of the target link
           * @apiSuccess (200) {String} message a message acknowledging a successful delete
+          * @apiSuccess (200) {String} title the title of the deleted link
           * @apiSuccessExample {json} Success-Response-Body:
           *  {
           *    title: "example",
