@@ -108,7 +108,7 @@ module.exports = function(app) {
          * @apiErrorExample {json} Error-Response-Body:
          * {
          *   err: {
-         *     type: "ValidationError"
+         *     type: "NotFoundError"
          *     message: "target link not found"
          *   }
          * }
@@ -131,7 +131,7 @@ module.exports = function(app) {
           * @apiErrorExample {json} Error-Response-Body:
           * {
           *   err: {
-          *     type: "ValidationError"
+          *     type: "NotFoundError"
           *     message: "target link not found"
           *   }
           * }
