@@ -57,6 +57,14 @@ exports.readLink = async function(req, res) {
 
 exports.updateLink = async function(req, res) {
   try {
+    if(req.body.title === ''){
+      res.status(400).send({err: {type: "ValidationError", message: "link title is required"}})
+      return
+    }
+    if(!alphaNumericUnderscoreRegex.test(req.body.title)){
+      res.status(400).send({err: {type: "ValidationError", message: "link title can only contain alphanumeric characters and underscores"}})
+      return
+    }
     let linkExists = await Link.findOne({title: req.body.title})
     if(linkExists){
       res.status(400).send({err: {type: "ValidationError", message: "link already exists"}})

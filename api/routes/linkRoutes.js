@@ -35,21 +35,21 @@ module.exports = function(app) {
          *    clicks: 10
          *  }
          * @apiError (400) {Object} ValidationError an object describing the error
-         * @apiErrorExample {json} Error-Response-Body:
+         * @apiErrorExample {json} ValidationError:
          * {
          *   err: {
          *     type: "ValidationError"
          *     message: "link already exists"
          *   }
          * }
-         * @apiErrorExample {json} Error-Response-Body:
+         * @apiErrorExample {json} ValidationError:
          * {
          *   err: {
          *     type: "ValidationError"
          *     message: "link title is required"
          *   }
          * }
-         * @apiErrorExample {json} Error-Response-Body:
+         * @apiErrorExample {json} ValidationError:
          * {
          *   err: {
          *     type: "ValidationError"
@@ -105,7 +105,7 @@ module.exports = function(app) {
          *    clicks: 10
          *  }
          * @apiError (404) {Object} NotFoundError an object with a message about the error
-         * @apiErrorExample {json} Error-Response-Body:
+         * @apiErrorExample {json} NotFoundError:
          * {
          *   err: {
          *     type: "NotFoundError"
@@ -113,11 +113,25 @@ module.exports = function(app) {
          *   }
          * }
          * @apiError (400) {Object} ValidationError an object with a message about the error
-         * @apiErrorExample {json} Error-Response-Body:
+         * @apiErrorExample {json} ValidationError:
          * {
          *   err: {
          *     type: "ValidationError"
          *     message: "link already exists"
+         *   }
+         * }
+         * @apiErrorExample {json} ValidationError:
+         * {
+         *   err: {
+         *     type: "ValidationError"
+         *     message: "link title is required"
+         *   }
+         * }
+         * @apiErrorExample {json} ValidationError:
+         * {
+         *   err: {
+         *     type: "ValidationError"
+         *     message: "link title can only contain alphanumeric characters and underscores"
          *   }
          * }
          */
