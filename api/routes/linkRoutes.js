@@ -112,6 +112,14 @@ module.exports = function(app) {
          *     message: "target link not found"
          *   }
          * }
+         * @apiError (400) {Object} ValidationError an object with a message about the error
+         * @apiErrorExample {json} Error-Response-Body:
+         * {
+         *   err: {
+         *     type: "ValidationError"
+         *     message: "link already exists"
+         *   }
+         * }
          */
         .put(linkController.updateLink)
          /**

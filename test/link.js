@@ -166,6 +166,22 @@ describe('Links', () => {
           done()
         })
     })
+    it('it should get link already exists', (done) => {
+      chai.request(server)
+        .put('/links/' + link2.title)
+        .send({
+          title: link3.title
+        })
+        .end((err, res) => {
+          res.should.have.status(400)
+          res.body.should.have.property("err")
+          res.body.err.should.have.property("message")
+          res.body.err.message.should.eql("link already exists")
+          res.body.err.should.have.property("type")
+          res.body.err.type.should.eql("ValidationError")
+          done()
+        })
+    })
   })
   describe('DELETE /links/:title', () => {
     it('it should delete a link', (done) => {

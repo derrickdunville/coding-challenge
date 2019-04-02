@@ -57,6 +57,11 @@ exports.readLink = async function(req, res) {
 
 exports.updateLink = async function(req, res) {
   try {
+    let linkExists = await Link.findOne({title: req.body.title})
+    if(linkExists){
+      res.status(400).send({err: {type: "ValidationError", message: "link already exists"}})
+      return
+    }
     let updatedLink = await Link.findOneAndUpdate({title: req.params.title}, {title: req.body.title}, {new: true})
     if(!updatedLink){
       res.status(404).send(NotFoundError)
