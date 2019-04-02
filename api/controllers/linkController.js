@@ -21,17 +21,17 @@ exports.createLink = async function(req, res) {
       res.status(400).send({err: {type: "ValidationError", message: "link title is required"}})
       return
     }
-    if(!alphaNumericUnderscoreRegex.test(req.body.title)){
+    if(!alphaNumericUnderscoreRegex.test(req.body.title.toLowerCase())){
       res.status(400).send({err: {type: "ValidationError", message: "link title can only contain alphanumeric characters and underscores"}})
       return
     }
-    let linkExists = await Link.findOne({title: req.body.title})
+    let linkExists = await Link.findOne({title: req.body.title.toLowerCase()})
     if(linkExists){
       res.status(400).send({err: {type: "ValidationError", message: "link already exists"}})
       return
     }
     let newLink = new Link({
-      title: req.body.title
+      title: req.body.title.toLowerCase()
     })
     let savedLink = await newLink.save()
     res.status(201).send(savedLink)
@@ -43,7 +43,7 @@ exports.createLink = async function(req, res) {
 
 exports.readLink = async function(req, res) {
   try {
-    let link = await Link.findOne({title: req.params.title})
+    let link = await Link.findOne({title: req.params.title.toLowerCase()})
     if(!link){
       res.status(404).send(NotFoundError)
       return
@@ -61,16 +61,16 @@ exports.updateLink = async function(req, res) {
       res.status(400).send({err: {type: "ValidationError", message: "link title is required"}})
       return
     }
-    if(!alphaNumericUnderscoreRegex.test(req.body.title)){
+    if(!alphaNumericUnderscoreRegex.test(req.body.title.toLowerCase())){
       res.status(400).send({err: {type: "ValidationError", message: "link title can only contain alphanumeric characters and underscores"}})
       return
     }
-    let linkExists = await Link.findOne({title: req.body.title})
+    let linkExists = await Link.findOne({title: req.body.title.toLowerCase()})
     if(linkExists){
       res.status(400).send({err: {type: "ValidationError", message: "link already exists"}})
       return
     }
-    let updatedLink = await Link.findOneAndUpdate({title: req.params.title}, {title: req.body.title}, {new: true})
+    let updatedLink = await Link.findOneAndUpdate({title: req.params.title.toLowerCase()}, {title: req.body.title.toLowerCase()}, {new: true})
     if(!updatedLink){
       res.status(404).send(NotFoundError)
       return
@@ -84,12 +84,13 @@ exports.updateLink = async function(req, res) {
 
 exports.deleteLink = async function(req, res) {
   try {
-    let deletedLink = await Link.deleteOne({ title: req.params.title })
-    if(!deletedLink){
+    let linkExists = await Link.findOne({title: req.params.title.toLowerCase()})
+    if(!linkExists){
       res.status(404).send(NotFoundError)
       return
     }
-    res.status(200).send({title: req.params.title, message: "link successfully deleted"})
+    let deletedLink = await Link.deleteOne({ title: req.params.title.toLowerCase() })
+    res.status(200).send({title: req.params.title.toLowerCase(), message: "link successfully deleted"})
   } catch(error) {
     console.dir(error)
     res.status(500).send(error)

@@ -140,13 +140,13 @@ describe('Links', () => {
       chai.request(server)
         .put('/links/' + link1.title)
         .send({
-          title: "updatedLink"
+          title: "updatedlink"
         })
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.be.a("object")
           res.body.should.have.property("title")
-          res.body.title.should.eql("updatedLink")
+          res.body.title.should.eql("updatedlink")
           done()
         })
     })
@@ -154,7 +154,7 @@ describe('Links', () => {
       chai.request(server)
         .put('/links/' + "notfound")
         .send({
-          title: "updatedLink2"
+          title: "updatedlink2"
         })
         .end((err, res) => {
           res.should.have.status(404)
@@ -214,12 +214,12 @@ describe('Links', () => {
   describe('DELETE /links/:title', () => {
     it('it should delete a link', (done) => {
       chai.request(server)
-        .delete('/links/' + link1.title)
+        .delete('/links/' + link3.title)
         .send()
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.have.property("title")
-          res.body.title.should.eql(link1.title)
+          res.body.title.should.eql(link3.title)
           res.body.should.have.property("message")
           res.body.message.should.eql("link successfully deleted")
           done()
@@ -227,7 +227,7 @@ describe('Links', () => {
     })
     it('it should get target link not found', (done) => {
       chai.request(server)
-        .put('/links/' + "notfound")
+        .delete('/links/' + "notfound")
         .send()
         .end((err, res) => {
           res.should.have.status(404)
