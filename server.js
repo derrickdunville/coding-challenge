@@ -29,6 +29,7 @@ linkRoutes(app)
 clickRoutes(app)
 
 app.use('/', express.static('apidoc'))
+app.use('/html-css-exercise', express.static('html-css-exercise'))
 // catch 404 and forward to error handler
 app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
