@@ -61,7 +61,7 @@ There is currently test coverage for all API endpoints.
 `npm run test` will run the test suites.
 
 ## Deployment
-This REST API is currently deployed to AWS. It's running on a Ubuntu 14.04 EC2 Instance with an NGINX web server. It can be found here
+This REST API is currently deployed to AWS. It's running on a Ubuntu 14.04 EC2 Instance with an NGINX web server. PM2 is managing the running process. It can be found here
 
 http://api.ambassador.derrickdunville.com
 
@@ -75,3 +75,6 @@ I have been working on this project for a few months now.  It was forked from ma
 https://github.com/creativetimofficial/material-dashboard-react
 
 All work on this repository since I forked it has been done by me. My goal with this project is to push a React Front-End for a company I co-founded called Ascend Trading. It will be replacing our current Wordpress website and will utilize Stripe, SendGrid and Twilio.
+
+## About the Author
+http://derrickdunville.com
