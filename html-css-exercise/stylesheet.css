@@ -63,6 +63,7 @@ ul li {
 @media screen and (max-width: 767px) {
   .activity-feed-item {
     flex-wrap: wrap-reverse;
+    margin-bottom: 15px !important;
   }
 
   .date {
